@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Call Multiple JavaScript Functions on Click of a Button</title>
+</head> 
+<body>
+    <button type="button" id="myBtn">Click Me</button>
+     
+    <script>
+    // Defining custom functions
+    function sayHello(){
+        alert("Hello World! sayHello() function executed successfully!");
+    }
+     
+    function sayHi(){
+        alert("Hi There! sayHi() function executed successfully!");
+    }
+     
+    // Selecting button element
+    var btn = document.getElementById("myBtn");
+     
+    // Assigning event listeners to the button
+    btn.addEventListener("click", sayHello);
+    btn.addEventListener("click", sayHi);
+    </script>
+</body>
+</html>

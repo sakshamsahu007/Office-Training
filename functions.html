@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<title>Functions</title>
+
+<body>
+
+    <p>Input your age and click the button:</p>
+    
+    <input id="age" value="" onfocus="this.value=''" placeholder="Input your age"/>
+    
+    <button onclick="myFunction()">Try it</button>
+    
+    <p id="demo"></p>
+    
+    <script>
+        function myFunction() {
+            var age, voteable;
+            age = Number(document.getElementById("age").value);
+            if (isNaN(age)) {
+                voteable = "Input is not a number";
+            } else {
+                voteable = (age < 18) ? "Too young" : "Old enough";
+            }
+            document.getElementById("demo").innerHTML = voteable;
+        }
+    </script>
+
+    <p id="demo1"></p>
+    
+    <script>
+        var day;
+        switch (new Date().getDay()) {
+            case 0:
+                day = "Sunday";
+                break;
+            case 1:
+                day = "Monday";
+                break;
+            case 2:
+                day = "Tuesday";
+                break;
+            case 3:
+                day = "Wednesday";
+                break;
+            case 4:
+                day = "Thursday";
+                break;
+            case 5:
+                day = "Friday";
+                break;
+            case 6:
+                day = "Saturday";
+        }
+        document.getElementById("demo1").innerHTML = "Today is " + day;
+    </script>
+
+    <p id="demo2"></p>
+    
+    <script>
+        var cars = ["BMW", "Volvo", "Saab", "Ford", "Fiat", "Audi"];
+        var text = "";
+        var i;
+        for (i = 0; i < cars.length; i++) {
+            text += cars[i] + "<br>";
+        }
+        document.getElementById("demo2").innerHTML = text;
+    </script>
+
+    <p id="demo3"></p>
+
+    <script>
+        var txt = "";
+        var person = { fname: "John", lname: "Doe", age: 25 };
+        var x;
+        for (x in person) {
+            txt += person[x] + " ";
+        }
+        document.getElementById("demo3").innerHTML = txt;
+    </script>
+
+    <script>
+        var cars = ['BMW', 'Volvo', 'Mini'];
+        var x;
+
+        for (x of cars) {
+            document.write(x + "<br >");
+        }
+    </script>
+
+    <script>
+        var txt = 'JavaScript';
+        var x;
+
+        for (x of txt) {
+            document.write(x + "<br >");
+        }
+    </script>
+
+    <p id="demo4"></p>
+    
+    <script>
+        var text = "";
+        var i = 0;
+        while (i < 5) {
+            text += "<br>The number is " + i;
+            i++;
+        }
+        document.getElementById("demo4").innerHTML = text;
+    </script>
+
+    <p id="demo5"></p>
+    
+    <script>
+        var text = ""
+        var i = 0;
+
+        do {
+            text += "<br>The number is " + i;
+            i++;
+        }
+        while (i < 5);
+
+        document.getElementById("demo5").innerHTML = text;
+    </script>
+
+    <p id="demo6"></p>
+    
+    <script>
+        var text = "";
+        var i;
+        for (i = 0; i < 10; i++) {
+            if (i === 2) { break; }
+            text += "Break at 2 : " + i + "<br>";
+        }
+        document.getElementById("demo6").innerHTML = text;
+    </script>
+
+    <p id="demo7"></p>
+    
+    <script>
+        var text = "";
+        var i;
+        for (i = 0; i < 5; i++) {
+            if (i === 2) { continue; }
+            text += "Continue at 2 : " + i + "<br>";
+        }
+        document.getElementById("demo7").innerHTML = text;
+    </script>
+
+    <p id="demo8"></p>
+    
+    <script>
+        var cars = ["BMW", "Volvo", "Saab", "Ford"];
+        var text = "";
+
+        list: {
+            text += cars[0] + "<br>";
+            text += cars[1] + "<br>";
+            break list;
+            text += cars[2] + "<br>";
+            text += cars[3] + "<br>";
+        }
+
+        document.getElementById("demo8").innerHTML = text;
+    </script>
+
+    
+
+
+
+
+</body>
+
+</html>

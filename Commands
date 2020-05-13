@@ -1,0 +1,72 @@
+ext install ms-python.python
+
+sudo apt install python-pip
+
+sudo apt install python3-pip
+
+sudo apt install virtualenv
+
+sudo apt install python3-flask
+
+pip install Flask
+
+python3 -m venv .venv
+
+python3 --version	
+
+ps -fA | grep python - 	Python [Errno 98] Address already in use
+
+protocol domain optional path
+
+sudo apt install python3.7
+
+npm install -g typescript
+
+sudo ln -s /home/techahead/.nvm/versions/node/v12.13.1/bin/node /usr/bin/node --> to correct sudo file path of nodejs
+
+nvm alias default 12.13.1
+
+sudo ng new website
+
+mkdir demo
+cd demo/
+ng new mywebsite
+cd mywebsite
+ng serve
+ng serve open
+
+
+npm i --save-dev @types/bluebird @types/core-js@0.9.36
+npm i --save bluebird
+npm install --save @types/core-js
+
+
+SHOW VARIABLES LIKE 'validate_password%';
+SET GLOBAL validate_password_policy = LOW;
+SET GLOBAL validate_password_length = 6;
+SET GLOBAL validate_password_number_count = 0;
+
+
+mysql_secure_installation
+
+
+sudo apt-get update
+sudo apt-get install mysql-server-5.5
+sudo apt-get install mysql-client-5.5
+sudo apt-get install mysql-common
+sudo apt-get install glade
+sudo apt-get install ntp
+
+
+sudo apt-get install -y phpmyadmin
+sudo apt-get purge phpmyadmin
+
+
+GRANT ALL PRIVILEGES ON * . * TO 'root'@'localhost';
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'Tech@901';
+CREATE USER 'techahead'@'localhost' IDENTIFIED BY 'Tech@901';
+
+
+
+
+

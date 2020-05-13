@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+    <body>
+        <h3>String Operations</h3>
+        
+        <script type="text/javaScript">
+
+            var name = "Techahead Software Pvt. Ltd.";
+            var name1 = " Noida ";
+            var URL = "http://www.tutorialspoint.com";
+            document.write("<br /> String : " + name);
+            document.write("<br /> String 2 : " + name1);
+
+            var x = "John";             // (x === y) is false because x and y have different types (string and object).
+            var y = new String("John"); //(x == z) is false because x and y are different objects.
+            var z = new String("Hello"); //Don't create strings as objects. It slows down execution speed.
+                                        // Objects cannot be compared.
+            document.write("<br /> String length : " + name.length );
+            document.write("<br /> Character at 10 index : " + name.charAt(10) );
+            document.write("<br /> Character code at 10 index : " + name.charCodeAt(10) );
+            document.write("<br /> Adding two strings : " + name.concat(name1) );
+            document.write("<br /> Index of 'a' in String : " + name.indexOf("a") );
+            document.write("<br /> Last Index of 'a' in String : " + name.lastIndexOf("a") );
+            document.write("<br /> Sliced String : " + name.slice(3,-2) );
+            document.write("<br /> Splited String : " + name.split(" ",2) );
+            document.write("<br /> Sub-String 5 to 10 : " + name.substr(5,10) );
+            document.write("<br /> Sub-String -20 to 2 : " + name.substr(-20,2) );
+            document.write("<br /> Lower Case : " + name.toLocaleLowerCase( ) );
+            document.write("<br /> Upper Case : " + name.toLocaleUpperCase( ) );
+            document.write("<br /> Value of (object) : " + y.valueOf() );
+            document.write("<br /> To String (object) : " + z.toString() );
+            document.write("<br /> Anchor : " + z.anchor( "myanchor" ) );
+            //alert(z.anchor( "myanchor" ));
+            document.write("<br /> Big : " + z.big() );
+            //alert(z.big());
+            document.write("<br /> Blink : " + z.blink() );
+            //alert(z.blink());
+            document.write("<br /> Link : " + z.link(URL) );
+            document.write("<br /> Strike : " + z.strike() );
+            document.write("<br /> Sub : " + name.sub() );
+            document.write("<br /> Sup : " + name.sup() );
+            document.write("<br /> Locate : " + name.search("Software") );
+            document.write("<br /> Replaced String : " + name.replace("Techahead", "Nagarro") );
+            document.write("<br /> Trim : " + name.trim() );
+            document.write("<br /> ECMAScript 5 : " + name1[3] );
+            document.write("<br /> To convert String to Array : " + name.split(" ") );
+
+
+      
+        </script>
+
+
+    </body>
+
+
+
+
+</html>

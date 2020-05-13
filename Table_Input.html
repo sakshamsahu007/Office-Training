@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <form>
+            <h1>Enter Data</h1>
+            <input id="number" type="text" placeholder="Number" />
+            <input id="name" type="text" placeholder="Name" />
+            <input id="age" type="text" placeholder="Age" />
+            <input type="button" value="Save/Show" onclick="insert()" />
+            <input type="button" value="Delete  " onclick="deletion()" />
+            <br>
+            <br>
+        </form>
+        <table id="display" style="width: 100%"></table>
+
+
+
+
+
+<script>
+
+    var data = [];
+
+    var numberInput = document.getElementById("number");
+    var nameInput = document.getElementById("name");
+    var ageInput = document.getElementById("age");
+    var messageBox = document.getElementById("display");
+
+    function insert() {
+        var number = numberInput.value;
+        var name = nameInput.value;
+        var age = ageInput.value;
+
+        data.push({
+            number: number,
+            name: name,
+            age: age
+        });
+
+        clearAndShow();
+    }
+
+    function deletion() {
+            var number = numberInput.value;
+            var name = nameInput.value;
+            var age = ageInput.value;
+            alert("calling")
+
+            data.pop({
+                number: number,
+                name: name,
+                age: age
+            });
+
+            clearAndShow();
+        }
+
+    function clearAndShow() {
+       // Clear our fields
+        numberInput.value = "";
+        nameInput.value = "";
+        ageInput.value = "";
+
+        var html = "";
+
+        // Show our output
+        html += "<tr>";
+        html += "<td>Number</td>";
+        html += "<td>Name</td>";
+        html += "<td>Age</td>";
+        html += "<td>Action</td>";
+        html += "</tr>";
+        for (i = 0; i <= data.length - 1; i++) {
+            html += "<tr>";
+            html += "<td>" + data[i].number + "</td>";
+            html += "<td>" + data[i].name + "</td>";
+            html += "<td>" + data[i].age + "</td>";
+            html += "<td>" + '<button onclick="deletion()">Delete</button>' + '</td>';
+            }
+
+                  
+        //document.getElementById("container").innerHTML += "<button>Delete</button>"
+
+        messageBox.innerHTML = html;
+        
+    }
+    </script>
+        <!--<div id="container"></div>
+                <button onclick="deletion()">Delete</button>-->
+    </body>
+
+</html>

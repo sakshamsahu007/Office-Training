@@ -1,0 +1,651 @@
+SELECT o.OrderID, o.OrderDate, c.CustomerName
+FROM Customers AS c inner join on Orders AS o
+WHERE c.CustomerName="Around the Horn" AND c.CustomerID=o.CustomerID;
+===================================================================================
+select orders.orderid, orders.orderdate, customers.customername
+from orders
+inner join customers on 
+orders.customerid=customers.customerid
+===================================================================================
+select user.first_name, user.email, designation.designation_name, department.department_name
+from user
+inner join designation on 
+user.designation_id=designation.designation_id
+
+inner join department on 
+user.department_id=department.department_id;
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+official - first name, second name, email, employee code, title code, manager
+
+personal - gender, age, dob, address, phone, city
+
+backend - department code, salary
+
+title - Manager, Associate, Senior Associate, CEO, Delivery Head, Sales Head, Team Lead
+
+department - IT, HR, Sales, Development, Testing, 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT Product_ID,Company,Quantity FROM `product_master`
+ORDER BY Quantity DESC
+
+select * from product_master where Rate>='2000'
+order by rate
+
+select * from product_master
+WHERE Quantity>10 or rate>2000
+
+select * from product_master
+WHERE quantity>=10 and (rate=2500 or rate=3500)
+order by Quantity
+
+select * from product_master
+WHERE not Company='Neva' and not Company='Sparx'
+order by Company DESC, Quantity ASC
+
+select * from product_master
+WHERE cost is not null
+
+update product_master
+set Quantity=6
+where Company='Neva'
+
+delete from product_master
+where Product_ID=6
+
+insert into product_master (Product,Company,Quantity,Rate)
+values ('abc','abc','0','0')
+
+select * from product_master
+where rate<3000
+order by rate desc
+limit 3
+
+select min(Quantity) as 'Least Quantity'
+from product_master
+where rate >0
+
+select max(Quantity) as 'Maximum Quantity'
+from product_master
+where rate >0
+
+select count(Product)
+from product_master
+where Quantity=0
+
+select avg(Quantity)
+from product_master
+where quantity>0
+
+select sum(Quantity)
+from product_master
+where quantity>0
+
+%	Represents zero or more characters									bl% finds bl, black, blue, and blob
+_	Represents a single character												h_t finds hot, hat, and hit
+[]	Represents any single character within the brackets				h[oa]t finds hot and hat, but not hit
+^	Represents any character not in the brackets						h[^oa]t finds hit, but not hot and hat
+-	Represents a range of characters										c[a-b]t finds cat and cbt
+
+select * from product_master
+where Company like '_e%'
+
+select * from product_master
+where Company like 's____%'
+
+select * from product_master
+where Company like 'n%e'
+
+select * from product_master
+where Company not like 'n%e'
+
+select * from product_master
+where contact like 'sak%'
+
+select * from product_master
+where contact like '%ve%'
+
+select * from product_master
+where contact like '_teven'
+
+select * from product_master
+where contact like 's__s___'
+
+select * from product_master
+where city in ('Noida','Gurgaon')
+
+select * from product_master
+where city not in ('Noida','Gurgaon')
+
+select * from product_master
+where rate between 1000 and 3000
+
+select * from product_master
+where rate not between 1000 and 3000
+
+select * from product_master
+where rate between 1000 and 3000
+and contact not in ('saksham')
+
+select * from product_master
+where company between 'addidas' and 'puma'
+order by quantity DESC
+
+select * from product_master
+where company not between 'addidas' and 'puma'
+order by quantity DESC
+
+select Product_ID as ID, Company as MNC, City as Location
+from product_master
+
+select Product_ID as ID, Company as Brand, concat(Vendor,', ',City) as Location
+from product_master
+
+select u.first_name, u.last_name, d.designation_name, dep.department_name
+from user as u
+inner join designation as d on 
+u.designation_id=d.designation_id
+inner join department as dep on 
+u.department_id=dep.department_id
+
+select count(contact), Contact from product_master
+group by Contact
+order by count(contact) desc
+
+select count(contact), Contact, Country from product_master
+group by Contact, Country
+having count(contact)>1
+order by count(contact) desc
+
+select product from product_master
+where product = any (select product from product_master where quantity=10)
+
+select product, quantity from product_master
+where product = all (select product from product_master where quantity=10)
+order by quantity desc
+
+insert into product_master_backup (Company,Quantity,Vendor,City)
+select Company,Quantity,Vendor,City from product_master
+where Contact='Saksham'
+
+select Company, Vendor, Quantity,
+case 
+when quantity >20 then "It is greater than 20"
+when quantity >10 then "It is greater than 10"
+when quantity =10 then "It is equal to 10"
+else "It is less than 10"
+end as Message
+from product_master
+order by Quantity DESC
+
+select Company, Vendor, City, Country, Contact
+from product_master
+order by 
+(case
+ 	when city is null then Country
+ 	else city
+end)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+create procedure alluser()
+begin
+	select * from user;
+end
+
+call alluser()
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure lastname(in lname varchar(255))
+
+begin 
+
+select * from user 
+where last_name=lname;
+
+end//
+
+delimiter ;
+
+call lastname('sahu')
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure count(
+	in name varchar(255),
+    out total varchar(255)
+)
+
+begin 
+
+select count(country)
+into total
+from product_master
+where contact=name;
+
+end//
+
+delimiter ;
+
+call count('Saksham',@total);
+select @total;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DELIMITER $$
+ 
+CREATE PROCEDURE SetCounter(
+    INOUT counter INT,
+    IN inc INT
+)
+BEGIN
+    SET counter = counter + inc;
+END$$
+ 
+DELIMITER ;
+
+
+SET @counter = 1;
+CALL SetCounter(@counter,1); -- 2
+CALL SetCounter(@counter,1); -- 3
+CALL SetCounter(@counter,5); -- 8
+SELECT @counter; -- 8
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure sale()
+
+begin 
+
+select 
+	sum(quantity*rate)
+from product_master;
+
+end// 
+
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure totalquantity()
+begin
+	declare total_quantity int default 0;
+    
+    select sum(quantity)
+    into total_quantity
+    from product_master; 
+	
+	select total_quantity;
+end// 
+delimiter ;
+
+call total_quantity
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+show procedure status where db='Example'
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT 
+    routine_name
+FROM
+    information_schema.routines
+WHERE
+    routine_type = 'PROCEDURE'
+        AND routine_schema = 'Example'
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------		
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+show procedure status;      					-- will show you the stored procedures.
+show create procedure MY_PROC;  		-- will show you the definition of a procedure. 
+help show;        									-- show all the available options for the show command.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+update product_master
+set cost=Quantity*rate
+where Quantity and rate!=0
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure cases(
+	in input int(255),
+    out output varchar(255))
+begin 
+
+declare countryname varchar(255);
+
+select country
+into countryname from 
+product_master
+where product_id=input;
+
+case countryname
+	when 'India' then 
+    	set output='India';
+    when 'Mexico' then 
+    	set output='Mexico';
+    when 'Germany' then 
+    	set output='Germany';
+    when 'Egypt' then 
+    	set output='Egypt';
+    else 
+    	set output='Not Listed';
+end case;
+
+end//
+
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure price(
+in input int(255),
+out output varchar(255))
+
+begin 
+
+declare charge int(255);
+
+select rate
+into charge 
+from product_master
+where product_id=input;
+
+case charge
+	when charge>3000 then 
+    	set output='Expensive';
+    when charge>2000 and charge<=3000  then 
+    	set output='Moderate';
+    when charge>1000 and charge<=2000 then 
+    	set output='Cheap';
+    when charge<=1000 then 
+    	set output='Very Cheap';
+    else
+    	set output='Not Listed';
+end case;
+
+end//
+
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure price(
+	in input int(255),
+	out output varchar(255))
+
+begin 
+
+declare charge int(255) default 0;
+
+select rate
+into charge from
+product_master
+where product_id=input;
+
+case charge
+	when charge>3000 then 
+    	set output='Expensive';
+    when charge<1000 then 
+    	set output='Very Cheap';
+    else
+    	set output='Not Listed';
+end case;
+
+end//
+
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure contact (
+	in info varchar(255),
+	out output varchar(255))
+
+sp: begin 
+
+declare counter int;
+
+select count(*)
+into counter 
+from product_master
+where contact = info;
+
+if counter =0 then
+set output='not present' ; 
+leave sp;
+else 
+set output=info;
+end if;
+
+end//
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter // 
+
+create procedure label(
+	inout brandlist varchar(4000) )
+
+begin 
+
+declare finished integer default 0;
+declare brand varchar(100) default "";
+
+declare curbrand
+	cursor for 
+    	select company from product_master;
+
+declare continue handler
+	for not found set finished=1;
+
+open curbrand;
+
+getbrand: loop 
+	fetch curbrand into brand;
+    if finished=1 then
+    	leave getbrand;
+    end if;
+    
+    set brandlist= concat(brand,";",brandlist);
+    
+    end loop getbrand;
+    
+close curbrand;
+
+end// 
+
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+drop procedure if exists productdetails
+
+create procedure productdetails(
+	in product01 varchar(255),
+	in company01 varchar(255))
+
+begin 
+
+	declare continue handler for 1062
+    	begin 
+        
+        select concat('duplicate (',product01,',',company01,')key occured') as message;
+        
+        end;
+        
+    insert into product_master(product,company)
+    	values(product01,company01);
+        
+    select count(*)
+    from product_master
+    where product=product01;
+
+end
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE SupplierProducts (
+    supplierId INT,
+    productId INT,
+    PRIMARY KEY (supplierId , productId)
+);
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create procedure fill(
+	in col_id int,
+	in col_quantity int,
+	in col_contact varchar(255),
+	in col_country varchar(255),
+	in col_vendor varchar(255),
+	in col_city varchar(255),
+	in col_rate int)
+
+begin 
+
+declare c int;
+
+select count(Product_ID) into c
+from product_master
+where Product_ID=col_id;
+
+if (c!=1) then 
+	signal sqlstate '45000'
+    	set message_text = 'Product ID not listed in DB';
+else 
+
+update product_master
+set quantity=col_quantity,contact=col_contact,country=col_country,vendor=col_vendor,city=col_city,rate=col_rate
+where Product_ID=col_id;
+
+insert into product_master(quantity,contact,country,vendor,city,rate)
+values(col_quantity,col_contact,col_country,col_vendor,col_city,col_rate);
+
+end if;
+
+
+end// 
+
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DELIMITER //
+ 
+CREATE PROCEDURE Divide(IN numerator INT, IN denominator INT, OUT result double)
+BEGIN
+    DECLARE division_by_zero CONDITION FOR SQLSTATE '22012';
+ 
+    DECLARE CONTINUE HANDLER FOR division_by_zero 
+    RESIGNAL SET MESSAGE_TEXT = 'Division by zero / Denominator cannot be zero';
+    -- 
+    IF denominator = 0 THEN
+        SIGNAL division_by_zero;
+    ELSE
+        SET result := numerator / denominator;
+    END IF;
+END// 
+
+DELIMITER ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create function state (input int(11)) returns varchar(20)
+deterministic 
+begin
+	
+    declare output varchar(20);
+    
+    if input>50000 then 
+    	set output='Expensive';
+    elseif (input<=50000 and input>=10000) then
+    	set output='Moderate';
+	elseif input<10000 then
+    	set output='Cheap';
+	end if;
+    
+    return (output);
+    
+end// 
+
+delimiter ;
+end//
+
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SHOW FUNCTION STATUS 
+WHERE db = 'Example'
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+delimiter //
+
+create function func(input int(11)) returns varchar(20)
+deterministic
+begin 
+
+	declare output varchar(20);
+    declare charge int(20);
+    
+    set charge=input;
+
+case 
+	when charge>3000 then 
+    	set output='Expensive';
+    when charge>2000 and charge<=3000 then 
+    	set output='Moderate';
+    when charge>1000 and charge<=2000 then 
+    	set output='Cheap';
+    when charge<=1000 then 
+    	set output='Very Cheap';
+    else
+    	set output='Not Listed';
+end case;
+
+return (output);
+
+end//
+
+delimiter ;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+create procedure proce_func(
+	in input int,
+    out output int)
+    
+begin 
+
+declare charge int;
+
+select rate into charge
+from product_master
+where product_id=input;
+
+set output = func(charge);
+
+end
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DROP FUNCTION IF EXISTS Function_Name;
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SHOW FUNCTION STATUS 
+WHERE db = 'classicmodels';
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SHOW FUNCTION STATUS LIKE '%Customer%';
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SELECT 
+    routine_name
+FROM
+    information_schema.routines
+WHERE
+    routine_type = 'FUNCTION'
+        AND routine_schema = '<database_name>';
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+

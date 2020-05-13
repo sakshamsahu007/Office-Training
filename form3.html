@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8 />
+    <title>JS HTML</title>
+    <style>
+        article,
+        aside,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+         table, th,td { border: 1px solid black;}
+                table { border-collapse: collapse;
+                        width: 100%;
+                        }
+
+            th {height: 30px;
+                }
+
+            td {text-align: center;
+                }  
+    </style>
+</head>
+
+<body>
+    <form action="/action_page.php" target="_blank" method="GET">
+        <h1>Enter Data</h1>
+        <input id="name" type="text" placeholder="Name" />
+        <input id="age" type="text" placeholder="Age" />
+        <input type="button" value="Save/Show" onclick="insert()" />
+    </form>
+    <div id="display"></div>
+
+    <script>
+    
+        var names = [];
+        var age = [];
+
+        var nameInput = document.getElementById("name");
+        var ageInput = document.getElementById("age");
+        var messageBox = document.getElementById("display");
+
+        function insert() {
+            names.push(nameInput.value);
+            age.push(ageInput.value);
+
+            clearAndShow();
+        }
+
+        function clearAndShow() {
+            // Clear our fields
+            nameInput.value = "";
+            ageInput.value = "";
+
+            // Show our output
+            messageBox.innerHTML = "";
+
+            messageBox.innerHTML += "<tr>Name :</tr> <td>" + names.join(" ") + "</td><br>";
+            messageBox.innerHTML += "<tr>Age :</tr> <td>" + age.join(" ") + "</td>";
+        }
+
+    </script>
+<br>
+<br>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td> --</td>
+            <td> --</td>
+            <td> --</td>
+    
+        </tr>
+        <tr>
+            <td> --</td>
+            <td> --</td>
+            <td> --</td>
+        </tr>
+    
+    </table>
+
+
+
+
+
+
+
+</body>
+
+</html>

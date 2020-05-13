@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script type="text/javaScript">
+                    
+                    var i; 
+  
+                    for (i = 0; i < 2; i++)  
+                            { 
+                                document.write("Hello World!" + "<br />");
+                                
+                            } 
+
+
+        function m1(name)
+        {
+            document.write("Hello " + name + " Welcome");
+        }   
+        var name_ref = "Admin";
+        m1(name_ref)
+
+
+
+
+        function rectangle()
+        {
+            var length, breadth;
+            
+            function create(l,b)
+            {
+                length=l;
+                breadth=b;
+            }
+
+            function getArea()
+            {
+                return (length*breadth);
+            }
+
+            function getPerimeter()
+            {
+                return (2 * (length+breadth))
+            }
+            // This is the object to consist public members.  
+            var publicAPI={
+                create : create,
+                getArea : getArea,
+                getPerimeter : getPerimeter
+            };
+
+            return publicAPI; // To be returned upon creation of a new instance.
+        }
+
+        // create a Rectangle module instance 
+        var myRect= new rectangle();
+        myRect.create(4,5);
+        //myRect.getArea();
+        //myRect.getPerimeter();
+
+        document.write("<br />Area : " + myRect.getArea());
+        document.write("<br />Perimeter : " + myRect.getPerimeter());
+
+                  
+        </script> 
+        
+
+
+
+
+
+    </body>
+
+
+
+
+
+
+</html>

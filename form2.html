@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <FORM action="" method="post">
+        <P>
+            First name: <INPUT type="text" name="firstname"><BR>
+            Last name: <INPUT type="text" name="lastname"><BR>
+            email: <INPUT type="text" name="email"><BR>
+            <INPUT type="radio" name="sex" value="Male"> Male<BR>
+            <INPUT type="radio" name="sex" value="Female"> Female<BR>
+            <INPUT type="submit" value="Send" onclick="LoopTest()"> 
+            <INPUT type="reset">
+        </P>
+    
+        <div id="container"></div>
+    </FORM>
+
+    <script>
+
+        function LoopTest() {
+            var i = 0;
+            var stop = 5;
+            for (i = 0; i < 5; i++) {
+                document.getElementById("container").innerHTML += "<button>button</button>"
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+        <h3>Array Operations</h3>
+        <p>JavaScript will try to convert strings to numbers in all numeric operations:</p>
+        <p>Trying to do arithmetic with a non-numeric string will result in NaN (Not a Number):</p>
+        <p>NaN is a number: typeof NaN returns number.</p>
+        <p>Infinity is a number: typeof Infinity returns number.</p>
+        <p>Use the toString() method to output numbers from base 2 to base 36.</p>
+
+        <script>
+
+            var x = 123.6565;
+            var y = new Number(123);
+
+            document.write("<br /> Convert to Strings : " + x.toString());
+            document.write("<br /> Convert to Exponents : " + x.toExponential());
+            document.write("<br /> Convert to Exponents : " + x.toExponential(5));
+            document.write("<br /> Convert to Fixed : " + x.toFixed(7));
+            document.write("<br /> Convert to Precision : " + x.toPrecision(5));
+            document.write("<br /> Convert to Value : " + x.valueOf());
+            document.write("<br /> Convert to Numbers : " + Number(true));
+            document.write("<br /> Convert to Numbers : " + Number(false));
+            document.write("<br /> Convert to Numbers : " + Number("10.33"));
+            document.write("<br /> Convert to Numbers : " + Number("10,33"));
+            document.write("<br /> Convert to Numbers : " + Number("10 33"));
+            document.write("<br /> Convert to Numbers : " + Number("John"));
+            document.write("<br /> Convert to Numbers : " + Number(new Date("2017-09-30")));
+            //The Number() method above returns the number of milliseconds since 1.1.1970.
+            document.write("<br /> ParseInt : " + parseInt("10.33"));
+            document.write("<br /> ParseInt : " + parseInt("10 20 30"));
+            document.write("<br /> ParseInt : " + parseInt("years 10"));
+            document.write("<br /> ParseInt : " + parseInt("10 years"));
+            document.write("<br /> ParseFloat : " + parseFloat("10.33"));
+            document.write("<br /> ParseFloat : " + parseFloat("10.33 20 30"));
+            document.write("<br /> ParseFloat : " + parseFloat("years 10.33"));
+            document.write("<br /> ParseFloat : " + parseFloat("10.33 years"));
+            document.write("<br /> Largest Number in JS : " + Number.MAX_VALUE );
+            document.write("<br /> Smallest Number in JS : " + Number.MIN_VALUE);
+            document.write("<br /> Positive Infinity in JS : " + Number.POSITIVE_INFINITY);
+            document.write("<br /> Negative Infinity in JS : " + Number.NEGATIVE_INFINITY);
+            document.write("<br /> NAN in JS : " + Number.NAN);
+            //Using a Number property on a variable, expression, or value, will return undefined.
+            
+            var alpha = ["a", "b", "c", "a", "b", "c", "a", "b", "c"];
+            var numeric = [11, 22, 33, 44];
+            var numbers = [1, 4, 9, 16, 25];
+            var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            var alphabets = ['z','l','a','t','a','n','g','o','d'];
+            var fruits = ["Banana", "Orange", "Apple", "Mango", "Guava"];
+            var person = { firstName: "John", lastName: "Doe", age: 46 };
+
+            document.write("<br /> Alpha : " + alpha);
+            document.write("<br /> Numeric : " + numeric);
+            document.write("<br /> Numbers : " + numbers);
+            document.write("<br /> Concatination : " + alpha.concat(numeric));
+            //Can take any number of array arguments. It does not change the existing arrays. It always returns a new array.
+            document.write("<br /> Concatination of elements : " + numeric.concat(55,66, "seven seven"));
+            document.write("<br /> Length : " + alpha.length);
+            document.write("<br /> Sort : " + alpha.sort());
+            document.write("<br /> First Element : " + alpha[0]);
+            document.write("<br /> Last Element : " + alpha[alpha.length -1]);
+            document.write("<br /> Index of 1 : " + numeric.indexOf(11));
+            document.write("<br /> Index of 1 : " + numeric.indexOf(1));
+            document.write("<br /> Join : " + alpha.join(" -"));
+            document.write("<br /> Last Index of 'a' in alpha : " + alpha.lastIndexOf("a"));
+
+            document.write("<br /> Index of 1 : " + numeric.indexOf(1));
+            document.write("<br /> Push for 36 & 49 in numbers : " + numbers.push(36,49));
+            //Returns the new array length.
+            document.write("<br /> Output : " + numbers );
+            document.write("<br /> Pop for 49 in numbers : " + numbers.pop(49));
+            //Removes the last element from an array.
+            document.write("<br /> Output : " + numbers);
+            document.write("<br /> Shift for 11 in numeric : " + numeric.shift());
+            //Returns the string that was "shifted out".
+            document.write("<br /> Output : " + numeric);
+            document.write("<br /> Un-Shift for 0 in numeric : " + numeric.unshift(00));
+            //Returns the new array length.
+            document.write("<br /> Output : " + numeric);
+            document.write("<br /> Type of ? 'numbers' : " + typeof numbers);
+            document.write("<br /> Is it an Array ? 'numbers' : " + Array.isArray(numbers));
+            document.write("<br /> Instance of ? 'numbers' : " + (numbers instanceof Array));
+            document.write("<br /> Fruits : " + fruits);
+            document.write("<br /> Splice for Kiwi and Lemon in fruits : " + fruits.splice(2,2,"Kiwi","Lemon"));
+            document.write("<br /> Modified Fruits : " + fruits);
+            //Returns an array with the deleted items.
+            document.write("<br /> Fruits Sliced at 2: " + fruits.slice(2));
+            //Creates a new array.
+            document.write("<br /> Fruits Sliced between 1 and 3: " + fruits.slice(1,3));
+            document.write("<br /> Sorting Alphabetically : " + alphabets.sort());
+            document.write("<br /> Reverse Descending : " + digits.reverse());
+            document.write("<br /> Maximum Value in array 'digits' : " + Math.max.apply(null, digits));
+            document.write("<br /> Minimum Value in array 'digits' : " + Math.min.apply(null, digits));
+            //Math.max.apply(null, [1, 2, 3]) is equivalent to Math.max(1, 2, 3)
+            //Math.min.apply(null, [1, 2, 3]) is equivalent to Math.min(1, 2, 3)
+            
+
+
+
+
+
+            
+        
+        
+        
+        
+        
+        
+        </script>
+        
+    </body>
+
+</html>

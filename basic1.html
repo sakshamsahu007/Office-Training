@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tables</title>
+    <style>
+    table, th,td { border: 1px solid black;}
+    table { border-collapse: collapse;
+            width: 100%;
+            }
+
+    th {height: 30px;
+        }
+
+    td {text-align: center;
+        }    
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Salary</th>
+            <th>Age</th>
+            <th>ID</th>
+        </tr>
+        <tr>
+            <td>Anil</td>
+            <td>10000</td>
+            <td>23</td>
+            <td>anil.com</td>
+        </tr>
+        <tr>
+            <td>Amit</td>
+            <td>20000</td>
+            <td>25</td>
+            <td>amit.com</td>
+        </tr>
+    </table>
+<br>
+<br>
+<br>    
+
+<form action="/action_page.php" target="_blank" method="GET">
+    Enter your name:
+    <input  type="text" placeholder="input firstname" name="firstname" id="firstname"> 
+    Enter your age :
+    <input  type="text" placeholder="input age" name="age" id="age">
+    <br>
+    <br>
+    <button type="submit" onclick="myFunction()" id= "" >Click</button>
+    
+</form>
+<script>
+    var name = [];
+    document.getElementById("demo").innerHTML = name;
+
+    function myFunction() {
+        name.push();
+        document.getElementById("demo").innerHTML = name;
+    }
+</script>
+
+<p></p>
+<p></p>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Action</th>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+    </tr>
+
+</table>
+
+</body>
+
+</html>
+
+
